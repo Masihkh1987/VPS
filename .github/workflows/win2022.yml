@@ -1,6 +1,7 @@
-name: Windows 2022
+name: CI
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
@@ -11,8 +12,8 @@ jobs:
     steps:
     - name: Download Ngrok
       run: |
-        Invoke-WebRequest -Uri "https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip" -OutFile "ngrok.zip"
-        Expand-Archive -Path "ngrok.zip" -DestinationPath "."
+        Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip
+        Expand-Archive ngrok.zip
     - name: Auth Ngrok
       run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
       env:
